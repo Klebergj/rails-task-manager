@@ -1,0 +1,19 @@
+<h1>Here are your tasks</h1>
+<ul>
+  <% @tasks.each do |task| %>
+  <li>
+    <% if task.completed == true %>
+    <%= check_box_tag(:task, task.id, true) %>
+    <% task.save! %>
+    <% else %>
+    <%= check_box_tag(:task, task.id, false) %>
+    <% task.save! %>
+    <% end %>
+    <%=link_to task.title, task_path(task)%> • <%= link_to "", task_path(task),
+    method: :delete,
+    data:{confirm: "Are you sure?"},class: "far fa-trash-alt" %></li>
+    <% end %>
+  </ul>
+  <div class="div">
+  <%= link_to " Create a new task", new_task_path, class: "fas fa-plus"  %>
+  </div>
